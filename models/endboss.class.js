@@ -86,7 +86,7 @@ class Endboss extends MovableObject {
   handleMovement() {
     if (this.isDefeated) return;
     if (this.hadFirstContact) {
-      this.world.level.level_end_x = this.x + 20;
+      this.world.character.x = Math.min(this.world.character.x, this.x - 50);
       this.speed = this.MAX_SPEED;
       if (this.x <= 400) this.movingLeft = false;
       if (this.x >= 2500) this.movingLeft = true;
