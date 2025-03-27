@@ -78,6 +78,7 @@ class MovableObject extends DrawableObject {
  * @returns {boolean} `true` if this object is on top of the other object, otherwise `false`.
  */
 isCollidingOnTop(obj) {
+  if (obj instanceof Endboss) return false;
   return (
       this.x + this.width > obj.x &&
       this.x < obj.x + obj.width &&

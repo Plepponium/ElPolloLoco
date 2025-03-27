@@ -30,14 +30,16 @@ function toggleMuteUI() {
 function toggleFullScreen() {
     const fullscreenButton = document.getElementById('fullscreen-icon');
     const gameContainer = document.getElementById('game-container');
+    let startscreen = document.getElementById('startscreen');
+    let endscreen = document.getElementById('endscreen')
     const canvas = document.getElementById('canvas');
     const controlButtons = document.querySelector('.control-buttons');
     const panel = document.querySelector('.panel');
     if (!document.fullscreenElement) {
-        openFullscreen(gameContainer, canvas, controlButtons, panel);
+        openFullscreen(gameContainer, [canvas, startscreen, endscreen], controlButtons, panel);
         fullscreenButton.src = "./img/icons/exit-fullscreen.png";
     } else {
-        closeFullscreen(canvas, controlButtons, panel);
+        closeFullscreen([canvas, startscreen, endscreen], controlButtons, panel);
         fullscreenButton.src = "./img/icons/fullscreen.png";
     }
 }
@@ -45,32 +47,36 @@ function toggleFullScreen() {
 /**
 * Enables fullscreen mode for a given element.
 * @param {HTMLElement} element - The element to display in fullscreen.
-* @param {HTMLElement} canvas - The canvas element to resize in fullscreen mode.
+* @param {HTMLElement[]} elements - The elements to resize in fullscreen mode.
 * @param {HTMLElement} controlButtons - The control buttons to adjust visibility and layering in fullscreen mode.
 * @param {HTMLElement} panel - The panel to adjust visibility and layering in fullscreen mode.
 */
-function openFullscreen(element, canvas, controlButtons, panel) {
+function openFullscreen(element, elements, controlButtons, panel) {
     element.requestFullscreen?.() ||
     element.webkitRequestFullscreen?.() ||
     element.msRequestFullscreen?.();
-    canvas.style.width = "100%"
-    canvas.style.height = "100%";
+    elements.forEach(el => {
+        el.style.width = "100%";
+        el.style.height = "100%";
+    });
     controlButtons.style.zIndex = '10';
     panel.style.zIndex = '10';
 }
 
 /**
 * Exits fullscreen mode and restores original layout.
-* @param {HTMLElement} canvas - The canvas element to restore its original size.
+* @param {HTMLElement[]} elements - The elements to restore their original size.
 * @param {HTMLElement} controlButtons - The control buttons to restore their original visibility and layering.
 * @param {HTMLElement} panel - The panel to restore its original visibility and layering.
 */
-function closeFullscreen(canvas, controlButtons, panel) {
+function closeFullscreen(elements, controlButtons, panel) {
     document.exitFullscreen?.() ||
     document.webkitExitFullscreen?.() ||
     document.msExitFullscreen?.();
-    canvas.style.width = "720px";
-    canvas.style.height = "480px";
+    elements.forEach(el => {
+        el.style.width = "720px";
+        el.style.height = "480px";
+    });
     controlButtons.style.zIndex = '';
     panel.style.zIndex = '';
 }
