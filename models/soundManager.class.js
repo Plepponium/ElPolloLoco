@@ -31,6 +31,16 @@ class SoundManager {
     }
 
     /**
+    * Stops all currently playing sounds by pausing them and resetting their playback position.
+    */
+    stopAllSounds() {
+        this.sounds.forEach(sound => {
+            sound.pause();
+            sound.currentTime = 0;
+        });
+    }
+
+    /**
     * Updates the mute button UI to reflect the current mute state.
     */
     updateButtonUI() {
@@ -38,6 +48,7 @@ class SoundManager {
         if (muteButton) {
             const img = muteButton.querySelector("img");
             if (img) img.src = this.isMuted ? "./img/icons/muted.png" : "./img/icons/unmuted.png";
+            muteButton.style.background = this.isMuted ? "rgba(255, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.5)";
         }
     }
 }

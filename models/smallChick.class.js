@@ -19,9 +19,9 @@ class Chick extends MovableObject {
   MIN_SPEED = 0.3;
   MAX_SPEED = 0.8;
   x = this.MIN_X + Math.random() * this.MAX_X;
-  y = 380;
+  y = 375;
   speed = this.MIN_SPEED + Math.random() * this.MAX_SPEED;
-  groundY = 380;
+  groundY = 375;
   height = 40;
   width = 40;
   isDefeated = false;

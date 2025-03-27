@@ -16,10 +16,17 @@ body {
   font-family: zabars, Arial, Helvetica, sans-serif;
 }
 
-#game-container{
+#game-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+#game-container:fullscreen {
   background-image: url(./img/bg/desert.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -120,22 +127,18 @@ h3 {
   width: 4px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.3)
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background-image: linear-gradient(#ff9d00, #ffdf01, #ff9d00);
   border: 0.5px solid rgba(0, 0, 0, 0.3)
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
 
 .overlay-content h2 {
   margin: 8px 0;
@@ -351,7 +354,7 @@ h3 {
   .panel {
     display: flex;
     position: absolute;
-    bottom: 16px;
+    bottom: 8px;
     width: 100%;
     margin-top: 0;
   }

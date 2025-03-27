@@ -37,7 +37,7 @@ class Endboss extends MovableObject {
   bossAlertSound = new Audio("audio/endboss-alert.mp3");
 
   MIN_SPEED = 0.75;
-  MAX_SPEED = 1.5;
+  MAX_SPEED = 3;
   width = 300;
   height = 500;
   y = -30;
@@ -54,7 +54,7 @@ class Endboss extends MovableObject {
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]);
     this.energy = 18;
-    this.speed = this.MIN_SPEED + Math.random() * this.MAX_SPEED;
+    this.speed = this.MIN_SPEED;
     this.loadAllImages();
     this.addSounds();
     this.animate();
@@ -85,10 +85,18 @@ class Endboss extends MovableObject {
   */
   handleMovement() {
     if (this.isDefeated) return;
-    if (this.x <= 2000) this.movingLeft = false;
-    if (this.x >= 2500) this.movingLeft = true;
+    if (this.hadFirstContact) {
+      this.speed = this.MAX_SPEED;
+      if (this.x <= 400) this.movingLeft = false;
+      if (this.x >= 2500) this.movingLeft = true;
+    } else {
+      this.speed = this.MIN_SPEED;
+      if (this.x <= 2000) this.movingLeft = false;
+      if (this.x >= 2500) this.movingLeft = true;
+    }
     this.movingLeft ? this.moveLeft() : this.moveRight();
   }
+
 
   /**
   * Starts the animation and movement behavior of the Endboss.

@@ -7,7 +7,7 @@ class MovableObject extends DrawableObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 3;
-  groundY = 145;
+  groundY = 150;
   energy = 100;
   lastHit = 0;
   offset = {top: 0, left: 0, right: 0, bottom: 0};
@@ -26,7 +26,7 @@ class MovableObject extends DrawableObject {
     if (this.isAboveGround() || this.speedY > 0) {
       this.y -= this.speedY;
       this.speedY -= this.acceleration;
-    } else {
+    } else if (this.y > this.groundY) {
       this.resetToGround();
     }
   }
@@ -71,22 +71,21 @@ class MovableObject extends DrawableObject {
     return [left, right, top, bottom];
   }
 
-
-
   /**
-  * Checks if this object is colliding on top of another object.
-  * @param {MovableObject} obj The object to check collision with.
-  * @returns {boolean} `true` if this object is on top of the other object, otherwise `false`.
-  */
-  isCollidingOnTop(obj) {
-    return (
-      this.x + this.width / 2 > obj.x &&
-      this.x + this.width / 2 < obj.x + obj.width &&
-      this.y + this.height >= obj.y &&
-      this.y + this.height <= obj.y + obj.height * 0.75 &&
+ * Checks if this object is colliding on top of another object.
+ * The collision is now checked across the full width of the target object.
+ * @param {MovableObject} obj The object to check collision with.
+ * @returns {boolean} `true` if this object is on top of the other object, otherwise `false`.
+ */
+isCollidingOnTop(obj) {
+  return (
+      this.x + this.width > obj.x &&
+      this.x < obj.x + obj.width &&
+      this.y + this.height >= obj.y && 
+      this.y + this.height <= obj.y + obj.height * 0.9 &&
       this.speedY <= 0
-    );
-  }
+  );
+}
 
   /**
   * Reduces the object's energy when hit. If energy reaches zero, the object dies.

@@ -24,17 +24,20 @@ function toggleMuteUI() {
 }
 
 /**
-* Toggles fullscreen mode for the game.
+* Toggles between fullscreen and windowed mode.
+* Updates the fullscreen button icon and adjusts layout accordingly.
 */
 function toggleFullScreen() {
     const fullscreenButton = document.getElementById('fullscreen-icon');
     const gameContainer = document.getElementById('game-container');
-
+    const canvas = document.getElementById('canvas');
+    const controlButtons = document.querySelector('.control-buttons');
+    const panel = document.querySelector('.panel');
     if (!document.fullscreenElement) {
-        openFullscreen(gameContainer);
+        openFullscreen(gameContainer, canvas, controlButtons, panel);
         fullscreenButton.src = "./img/icons/exit-fullscreen.png";
     } else {
-        closeFullscreen();
+        closeFullscreen(canvas, controlButtons, panel);
         fullscreenButton.src = "./img/icons/fullscreen.png";
     }
 }
@@ -42,20 +45,34 @@ function toggleFullScreen() {
 /**
 * Enables fullscreen mode for a given element.
 * @param {HTMLElement} element - The element to display in fullscreen.
+* @param {HTMLElement} canvas - The canvas element to resize in fullscreen mode.
+* @param {HTMLElement} controlButtons - The control buttons to adjust visibility and layering in fullscreen mode.
+* @param {HTMLElement} panel - The panel to adjust visibility and layering in fullscreen mode.
 */
-function openFullscreen(element) {
+function openFullscreen(element, canvas, controlButtons, panel) {
     element.requestFullscreen?.() ||
     element.webkitRequestFullscreen?.() ||
     element.msRequestFullscreen?.();
+    canvas.style.width = "100%"
+    canvas.style.height = "100%";
+    controlButtons.style.zIndex = '10';
+    panel.style.zIndex = '10';
 }
 
 /**
-* Exits fullscreen mode.
+* Exits fullscreen mode and restores original layout.
+* @param {HTMLElement} canvas - The canvas element to restore its original size.
+* @param {HTMLElement} controlButtons - The control buttons to restore their original visibility and layering.
+* @param {HTMLElement} panel - The panel to restore its original visibility and layering.
 */
-function closeFullscreen() {
+function closeFullscreen(canvas, controlButtons, panel) {
     document.exitFullscreen?.() ||
     document.webkitExitFullscreen?.() ||
     document.msExitFullscreen?.();
+    canvas.style.width = "720px";
+    canvas.style.height = "480px";
+    controlButtons.style.zIndex = '';
+    panel.style.zIndex = '';
 }
 
 /**
