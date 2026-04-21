@@ -8,7 +8,7 @@
 <h1 align="center">🐔 El Pollo Loco 🎮</h1>
 
 <p align="center">
-<strong>A fast-paced browser game inspired by classic platformers</strong>
+<strong>A simple browser game inspired by classic platformers</strong>
 
 Built with pure JavaScript, focusing on performance, structure, and smooth gameplay.
 </p>
@@ -22,15 +22,16 @@ Built with pure JavaScript, focusing on performance, structure, and smooth gamep
 <h2>✨ Features</h2>
 <ul>
 <li>🎮 Smooth player controls & real-time movement</li>
-<li>🧠 Enemy AI with dynamic interactions</li>
 <li>💥 Collision detection & game physics</li>
 <li>🎞️ Sprite-based animations</li>
 <li>🧩 Modular and scalable code structure</li>
+<li>🔊 Sound effects & background music</li>
+<li>📱 Mobile & touch controls</li>
 </ul>
 
 <h2>🛠️ Tech Stack</h2>
 <ul>
-<li>⚡ JavaScript (ES6+)</li>
+<li>⚡ JavaScript</li>
 <li>🌐 HTML5</li>
 <li>🎨 CSS3</li>
 <li>🖼️ Canvas API</li>
@@ -54,14 +55,6 @@ including game loops, object-oriented design, and interactive UI without framewo
 <p align="center">
 <em>(Add a GIF or screenshot here 👀)</em>
 </p>
-
-<h2>🔮 Future Improvements</h2>
-<ul>
-<li>🔊 Sound effects & background music</li>
-<li>📱 Mobile & touch controls</li>
-<li>🗺️ More levels & enemies</li>
-<li>⚙️ Performance optimizations</li>
-</ul>
 
 <hr>
 
