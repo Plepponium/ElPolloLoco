@@ -7,8 +7,9 @@
 
 <h1 align="center">🐔 El Pollo Loco 🎮</h1>
 
-
-<strong align="center">A simple browser game inspired by classic platformers</strong>
+<p align="center">
+<strong>A simple browser game inspired by classic platformers</strong>
+</p>
 <p align="center">
 Built with pure JavaScript, focusing on performance, structure, and smooth gameplay.
 </p>
